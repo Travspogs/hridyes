@@ -1,0 +1,162 @@
+let isLoggedIn = false;
+let cartItems = [];
+
+function login() {
+    isLoggedIn = true;
+    document.getElementById("login").style.display = "none";
+    document.getElementById("header").style.display = "block";
+    document.getElementById("main-content").style.display = "block";
+}
+
+function showSignUpForm() {
+    alert("Sign Up form will be displayed here.");
+}
+
+function showPage(pageId) {
+    document.querySelectorAll("section").forEach(section => {
+        section.style.display = "none";
+    });
+    document.getElementById(pageId).style.display = "block";
+}
+
+function showCart() {
+    let modal = document.getElementById("cart");
+    modal.style.display = "block";
+    displayCartItems();
+}
+
+function closeCart() {
+    let modal = document.getElementById("cart");
+    modal.style.display = "none";
+}
+
+function addToCart(itemName, price) {
+    let existingItem = cartItems.find(item => item.name === itemName);
+    if (existingItem) {
+        existingItem.quantity++;
+    } else {
+        cartItems.push({ name: itemName, price: price, quantity: 1 });
+    }
+    displayCartItems();
+}
+
+function removeFromCart(index) {
+    cartItems.splice(index, 1);
+    displayCartItems();
+}
+
+function increaseQuantity(index) {
+    cartItems[index].quantity++;
+    displayCartItems();
+}
+
+function decreaseQuantity(index) {
+    if (cartItems[index].quantity > 1) {
+        cartItems[index].quantity--;
+        displayCartItems();
+    }
+}
+
+function displayCartItems() {
+    let cartContent = document.getElementById("cart-items");
+    let total = 0;
+    cartContent.innerHTML = "";
+    cartItems.forEach((item, index) => {
+        let itemTotal = item.price * item.quantity;
+        total += itemTotal;
+        cartContent.innerHTML += `
+            <div class="cart-item">
+                <span>${item.name} - $${item.price} x ${item.quantity}</span>
+                <button onclick="removeFromCart(${index})">Remove</button>
+                <button onclick="increaseQuantity(${index})">+</button>
+                <button onclick="decreaseQuantity(${index})">-</button>
+            </div>
+        `;
+    });
+    document.getElementById("cart-total").textContent = `Total: $${total}`;
+}
+
+function checkout() {
+    alert("Checkout functionality will be implemented here.");
+}
+let isLoggedIn = false;
+let cartItems = [];
+
+function login() {
+    isLoggedIn = true;
+    document.getElementById("login").style.display = "none";
+    document.getElementById("header").style.display = "block";
+    document.getElementById("main-content").style.display = "block";
+}
+
+function showSignUpForm() {
+    alert("Sign Up form will be displayed here.");
+}
+
+function showPage(pageId) {
+    document.querySelectorAll("section").forEach(section => {
+        section.style.display = "none";
+    });
+    document.getElementById(pageId).style.display = "block";
+}
+
+function showCart() {
+    let modal = document.getElementById("cart");
+    modal.style.display = "block";
+    displayCartItems();
+}
+
+function closeCart() {
+    let modal = document.getElementById("cart");
+    modal.style.display = "none";
+}
+
+function addToCart(itemName, price) {
+    let existingItem = cartItems.find(item => item.name === itemName);
+    if (existingItem) {
+        existingItem.quantity++;
+    } else {
+        cartItems.push({ name: itemName, price: price, quantity: 1 });
+    }
+    displayCartItems();
+}
+
+function removeFromCart(index) {
+    cartItems.splice(index, 1);
+    displayCartItems();
+}
+
+function increaseQuantity(index) {
+    cartItems[index].quantity++;
+    displayCartItems();
+}
+
+function decreaseQuantity(index) {
+    if (cartItems[index].quantity > 1) {
+        cartItems[index].quantity--;
+        displayCartItems();
+    }
+}
+
+function displayCartItems() {
+    let cartContent = document.getElementById("cart-items");
+    let total = 0;
+    cartContent.innerHTML = "";
+    cartItems.forEach((item, index) => {
+        let itemTotal = item.price * item.quantity;
+        total += itemTotal;
+        cartContent.innerHTML += `
+            <div class="cart-item">
+                <span>${item.name} - $${item.price} x ${item.quantity}</span>
+                <button onclick="removeFromCart(${index})">Remove</button>
+                <button onclick="increaseQuantity(${index})">+</button>
+                <button onclick="decreaseQuantity(${index})">-</button>
+            </div>
+        `;
+    });
+    document.getElementById("cart-total").textContent = `Total: $${total}`;
+}
+
+function checkout() {
+    alert("Checkout functionality will be implemented here.");
+}
